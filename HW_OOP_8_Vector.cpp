@@ -4,14 +4,12 @@
 
 using namespace std;
 
-class ArrayList
-{
+class ArrayList {
     unsigned int size = 0;       // количество действительно присутствующих элементов в контейнере
     unsigned int capacity = 10;  // ёмкость (вместительность, запас памяти)
     int* data = nullptr;         // указатель на динамический массив целых чисел
 
-    void EnsureCapacity(unsigned int newCapacity)
-    {
+    void EnsureCapacity(unsigned int newCapacity) {
         if (newCapacity <= capacity) return;
 
         int* newData = new int[newCapacity];
@@ -27,8 +25,7 @@ class ArrayList
 public:
     ArrayList() : ArrayList(10) {}
 
-    ArrayList(unsigned int capacity)
-    {
+    ArrayList(unsigned int capacity) {
         if (capacity < 10) {
             capacity = 10;
         }
@@ -36,32 +33,27 @@ public:
         data = new int[capacity];
     }
 
-    ~ArrayList()
-    {
+    ~ArrayList() {
         if (data != nullptr) {
             delete[] data;
             data = nullptr;
         }
     }
 
-    unsigned int GetSize() const
-    {
+    unsigned int GetSize() const {
         return size;
     }
 
-    unsigned int GetCapacity() const
-    {
+    unsigned int GetCapacity() const {
         return capacity;
     }
 
-    void PushBack(int value)
-    {
+    void PushBack(int value) {
         EnsureCapacity(size + 1);
         data[size++] = value;
     }
 
-    void PushFront(int value)
-    {
+    void PushFront(int value) {
         EnsureCapacity(size + 1);
         for (int i = size; i > 0; i--) {
             data[i] = data[i - 1];
@@ -70,18 +62,15 @@ public:
         size++;
     }
 
-    void Clear()
-    {
+    void Clear() {
         size = 0;
     }
 
-    bool IsEmpty() const
-    {
+    bool IsEmpty() const {
         return size == 0;
     }
 
-    void Print() const
-    {
+    void Print() const {
         if (IsEmpty()) {
             cout << "Vector is empty.\n";
             return;
@@ -93,8 +82,7 @@ public:
         cout << "\n";
     }
 
-    void Remove(int value)
-    {
+    void Remove(int value) {
         unsigned int writeIndex = 0;
         for (unsigned int readIndex = 0; readIndex < size; readIndex++) {
             if (data[readIndex] != value) {
@@ -104,8 +92,7 @@ public:
         size = writeIndex;
     }
 
-    void Reverse()
-    {
+    void Reverse() {
         for (unsigned int i = 0; i < size / 2; i++) {
             int temp = data[i];
             data[i] = data[size - i - 1];
@@ -113,8 +100,7 @@ public:
         }
     }
 
-    void SortDesc()
-    {
+    void SortDesc()  {
         for (unsigned int i = 0; i < size - 1; i++) {
             for (unsigned int j = 0; j < size - i - 1; j++) {
                 if (data[j] < data[j + 1]) {
@@ -126,8 +112,7 @@ public:
         }
     }
 
-    void RandomFill(unsigned int count, int minVal, int maxVal)
-    {
+    void RandomFill(unsigned int count, int minVal, int maxVal) {
         srand(time(nullptr));
         EnsureCapacity(size + count);
         for (unsigned int i = 0; i < count; i++) {
@@ -135,8 +120,7 @@ public:
         }
     }
 
-    void RandomlyUserInput()
-    {
+    void RandomlyUserInput() {
         unsigned int count;
         int minVal, maxVal;
         cout << "Enter the number of elements: ";
@@ -158,8 +142,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     ArrayList ar;
     ar.Print();
 
