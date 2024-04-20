@@ -115,7 +115,6 @@ public:
 
     void SortDesc()
     {
-        // Используем сортировку пузырьком для небольших массивов
         for (unsigned int i = 0; i < size - 1; i++) {
             for (unsigned int j = 0; j < size - i - 1; j++) {
                 if (data[j] < data[j + 1]) {
